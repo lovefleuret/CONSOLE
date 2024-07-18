@@ -1,1 +1,1 @@
-CSRCS += $(wildcard /home/book/Desktop/TEST_LVGL/kawaii-mqtt/mqtt/*.c)
+CSRCS += $(wildcard $(LVGL_DIR)/kawaii-mqtt/mqtt/*.c)

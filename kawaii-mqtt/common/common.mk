@@ -1,5 +1,5 @@
 
-CSRCS += $(wildcard /home/book/Desktop/TEST_LVGL/kawaii-mqtt/common/*.c)
+CSRCS += $(wildcard $(LVGL_DIR)/kawaii-mqtt/common/*.c)
 
-include /home/book/Desktop/TEST_LVGL/kawaii-mqtt/common/log/log.mk
+include $(LVGL_DIR)/kawaii-mqtt/common/log/log.mk
 

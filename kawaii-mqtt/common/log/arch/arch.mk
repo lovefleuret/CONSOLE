@@ -2,4 +2,4 @@
 
 
 
-include /home/book/Desktop/TEST_LVGL/kawaii-mqtt/common/log/arch/linux/linux.mk
+include $(LVGL_DIR)/kawaii-mqtt/common/log/arch/linux/linux.mk

@@ -1,1 +1,1 @@
-include /home/book/Desktop/TEST_LVGL/kawaii-mqtt/platform/linux/linux.mk
+include $(LVGL_DIR)/kawaii-mqtt/platform/linux/linux.mk

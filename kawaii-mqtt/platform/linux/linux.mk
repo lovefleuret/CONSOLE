@@ -1,0 +1,1 @@
+CSRCS += $(wildcard /home/book/Desktop/TEST_LVGL/kawaii-mqtt/platform/linux/*.c)

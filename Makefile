@@ -3,8 +3,8 @@
 #
 # ⭐全速编译命令： make clean && make -j$(nproc)
 
-#CC ?= gcc
-CC := arm-buildroot-linux-gnueabihf-gcc	# 注意配置工具链！
+CC ?= gcc
+# CC := arm-buildroot-linux-gnueabihf-gcc	# 注意配置工具链！
 LVGL_DIR_NAME ?= lvgl
 LVGL_DIR ?= ${shell pwd}
 
@@ -57,7 +57,7 @@ all: default
 default: $(AOBJS) $(COBJS) $(MAINOBJ)
 	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(LVGL_DIR)/obj $(LVGL_DIR)/bin
-	mv *.o $(LVGL_DIR)/obj/
+	find . -type f -name "*.o" -exec mv {} $(LVGL_DIR)/obj/ \;
 	mv $(BIN) $(LVGL_DIR)/bin/
 
 clean: 

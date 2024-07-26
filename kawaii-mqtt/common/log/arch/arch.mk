@@ -2,4 +2,4 @@
 
 
 
-include $(LVGL_DIR)/kawaii-mqtt/common/log/arch/linux/linux.mk
+include $(CONSOLE)/kawaii-mqtt/common/log/arch/linux/linux.mk

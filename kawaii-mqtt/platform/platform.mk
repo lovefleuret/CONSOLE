@@ -1,1 +1,1 @@
-include $(LVGL_DIR)/kawaii-mqtt/platform/linux/linux.mk
+include $(CONSOLE)/kawaii-mqtt/platform/linux/linux.mk

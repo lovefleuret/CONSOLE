@@ -1,1 +1,1 @@
-CSRCS += $(wildcard $(LVGL_DIR)/kawaii-mqtt/mqttclient/*.c)
+CSRCS += $(wildcard $(CONSOLE)/kawaii-mqtt/mqttclient/*.c)

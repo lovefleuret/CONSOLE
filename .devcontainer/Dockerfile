@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-# 下载并安装 clangd 18.1.3
+
 RUN wget https://github.com/clangd/clangd/releases/download/18.1.3/clangd-linux-18.1.3.zip && \
     unzip clangd-linux-18.1.3.zip && \
     mv clangd_18.1.3 /usr/local/clangd_18.1.3 && \

@@ -11,8 +11,8 @@
         "ms-vscode.cpptools",
         "ms-python.python",
         "ms-azuretools.vscode-docker",
-        "llvm-vs-code-extensions.vscode-clangd"
+        "llvm-vs-code-extensions.vscode-clangd" // 添加 clangd 插件
     ],
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git clangd-10",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
     "remoteUser": "vscode"
 }

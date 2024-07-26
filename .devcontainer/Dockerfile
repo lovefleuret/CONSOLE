@@ -6,8 +6,19 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
     git \
-    clangd-10 \
+    wget \
+    vim \
     && rm -rf /var/lib/apt/lists/*
+
+# 下载并安装 clangd 18.1.3
+RUN wget https://github.com/clangd/clangd/releases/download/18.1.3/clangd-linux-18.1.3.zip && \
+    unzip clangd-linux-18.1.3.zip && \
+    mv clangd_18.1.3 /usr/local/clangd_18.1.3 && \
+    ln -s /usr/local/clangd_18.1.3/bin/clangd /usr/local/bin/clangd && \
+    rm clangd-linux-18.1.3.zip
+
+# 设置环境变量
+ENV PATH="/usr/local/clangd_18.1.3/bin:${PATH}"
 
 # 切换到非root用户
 USER vscode

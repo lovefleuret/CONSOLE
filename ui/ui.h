@@ -16,6 +16,7 @@
 #include "lvgl/src/core/lv_obj_pos.h"
 
 
+#define DISP_BUF_SIZE (1024 * 600)
 
 void LVGL_init(void);
 

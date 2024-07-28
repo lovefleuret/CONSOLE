@@ -82,17 +82,17 @@ static void led_button_event_cb(lv_event_t * e)
         led_state = !led_state;
         if(led_state) {
             lv_label_set_text(led_label, "LED Control\nLED ON");
-            // led_on(fd);
+            led_on(fd);
         } else {
             lv_label_set_text(led_label, "LED Control\nLED OFF");
-            // led_off(fd);
+            led_off(fd);
         }
         
     }
 }
 void ledtest_create(void)
 {
-	led_page = lv_obj_create(NULL);
+	led_page = lv_obj_create(lv_scr_act());
     lv_obj_set_size(led_page, 1024, 600);
     
     led_button = lv_btn_create(led_page);
@@ -105,7 +105,7 @@ void ledtest_create(void)
     led_label = lv_label_create(led_button);
     lv_label_set_text(led_label, "LED Control\n");
 
-	// fd = led_open("/dev/100ask_led0");
+	fd = led_open("/dev/100ask_led0");
     lv_obj_add_event_cb(led_button, led_button_event_cb, LV_EVENT_ALL, NULL);
 
 }

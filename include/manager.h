@@ -22,7 +22,7 @@ Console_t* dev_probe(char *name);
 void ConsoleSysInit(void);
 void ConsoleSysRun(void);
 void ConsoleRelease(void);
-
+void register_Console(void);
 
 
 extern void register_mqtt(void);

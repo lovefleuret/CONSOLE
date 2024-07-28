@@ -6,14 +6,12 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
-
+#include "lvgl/src/lv_api_map.h"
+#include "manager.h"
 
 #include "../include/manager.h"
 
-int led_open(char* file);
-void led_on(int fd);
-void led_off(int fd);
-void led_close(int fd);
+
 
 void register_test(void);
 

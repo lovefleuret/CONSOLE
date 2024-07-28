@@ -2,20 +2,18 @@
 
 
 #include "ledtest.h"
-#include "lv_event.h"
-#include "lvgl/src/lv_api_map.h"
-#include "manager.h"
+
 /*
  * ./ledtest /dev/100ask_led0 on
  * ./ledtest /dev/100ask_led0 off
  */
 
-int fd;
+int fd = -1;
 char status;
 lv_obj_t* led_page = NULL;
 lv_obj_t* led_button = NULL;
 lv_obj_t* led_label = NULL;
-int led_open(char* file)
+static int led_open(char* file)
 {
 	fd = open(file, O_RDWR);
 	if (fd == -1)
@@ -26,33 +24,34 @@ int led_open(char* file)
 	return fd;
 }
 
-void led_on(int fd)
+static void led_on(int fd)
 {	
 	status = 1;
 	write(fd, &status, 1);
 }
 
 
-void led_off(int fd)
+static void led_off(int fd)
 {	
 	status = 0;
 	write(fd, &status, 0);
 
 }
 
-void led_close(int fd)
+static void led_close(int fd)
 {
 	close(fd);
 }
 
 int res2;
 pthread_t thread2;
-void ledtest_exit(void)
-{
+static void ledtest_exit(void)
+{	
+	led_close(fd);
 	pthread_join(thread2, NULL);
 }
 
-void* ledtest_thread(void* args)
+static void* ledtest_thread(void* args)
 {
 	while(1)
 	{
@@ -63,7 +62,7 @@ void* ledtest_thread(void* args)
 }
 
 
-void led_run(void* p)
+static void led_run(void* p)
 {
 	res2 = pthread_create(&thread2, NULL, ledtest_thread, NULL);
 	if(res2 != 0) {
@@ -90,7 +89,7 @@ static void led_button_event_cb(lv_event_t * e)
         
     }
 }
-void ledtest_create(void)
+static void ledtest_create(void)
 {
 	led_page = lv_obj_create(lv_scr_act());
     lv_obj_set_size(led_page, 1024, 600);

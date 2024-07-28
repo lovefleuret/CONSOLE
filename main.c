@@ -58,6 +58,9 @@ void ConsoleSysInit(void)
 void ConsoleSysRun(void)
 {   
     Console_t* ptTmp = H_Conslole;
+    if(ptTmp == NULL)
+        return;
+    
     while(ptTmp)
     {
         if(ptTmp->Run)
@@ -90,19 +93,20 @@ void register_Console(void)
     register_mqtt();
     register_test();
 }
+
 int main(int args, char** argv, char** env)
 {   
 
     LVGL_init();
 
-    DEBUG
+   
     
     register_Console();
 
     ConsoleSysInit();
 
     ConsoleSysRun();
-    DEBUG
+   
 
 
     ConsoleRelease();

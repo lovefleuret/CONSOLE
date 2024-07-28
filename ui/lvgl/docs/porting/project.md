@@ -19,7 +19,7 @@ LVGL also supports `make` and `CMake` build systems out of the box. To add LVGL 
 ```make
 LVGL_DIR_NAME ?= lvgl     #The name of the lvgl folder (change this if you have renamed it)
 LVGL_DIR ?= ${shell pwd}  #The path where the lvgl folder is
-include $(CONSOLE)/$(LVGL_DIR_NAME)/lvgl.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/lvgl.mk
 ```
 
 For integration with CMake take a look this section of the [Documentation](/get-started/platforms/cmake).

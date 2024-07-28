@@ -6,18 +6,21 @@
 # CC ?= gcc
 CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
+UI_DIR_NAME ?= ui
 CONSOLE ?= ${shell pwd}
 
-CFLAGS ?= -O3 -g0 -I$(CONSOLE)/include $(CONSOLE) -Wall -Wshadow -Wundef -Wmissing-prototypes -Wno-discarded-qualifiers -Wall -Wextra -Wno-unused-function -Wno-error=strict-prototypes -Wpointer-arith -fno-strict-aliasing -Wno-error=cpp -Wuninitialized -Wmaybe-uninitialized -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wformat-security -Wno-ignored-qualifiers -Wno-error=pedantic -Wno-sign-compare -Wno-error=missing-prototypes -Wdouble-promotion -Wclobbered -Wdeprecated -Wempty-body -Wtype-limits -Wshift-negative-value -Wstack-usage=2048 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -Wuninitialized -Wmaybe-uninitialized -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wpointer-arith -Wno-cast-qual -Wmissing-prototypes -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wno-discarded-qualifiers -Wformat-security -Wno-ignored-qualifiers -Wno-sign-compare
+CFLAGS ?= -O3 -g0 -I$(CONSOLE)/$(UI_DIR_NAME)  -Wall -Wshadow -Wundef -Wmissing-prototypes -Wno-discarded-qualifiers -Wall -Wextra -Wno-unused-function -Wno-error=strict-prototypes -Wpointer-arith -fno-strict-aliasing -Wno-error=cpp -Wuninitialized -Wmaybe-uninitialized -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wformat-security -Wno-ignored-qualifiers -Wno-error=pedantic -Wno-sign-compare -Wno-error=missing-prototypes -Wdouble-promotion -Wclobbered -Wdeprecated -Wempty-body -Wtype-limits -Wshift-negative-value -Wstack-usage=2048 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -Wuninitialized -Wmaybe-uninitialized -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wpointer-arith -Wno-cast-qual -Wmissing-prototypes -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wno-discarded-qualifiers -Wformat-security -Wno-ignored-qualifiers -Wno-sign-compare
 CFLAGS += -I $(shell pwd)/include -I $(shell pwd)/kawaii-mqtt/common/log -I $(shell pwd)/kawaii-mqtt/platform/linux
 CFLAGS += -I $(shell pwd)/kawaii-mqtt/mqtt/  \
           -I $(shell pwd)/kawaii-mqtt/common \
-	  -I $(shell pwd)/kawaii-mqtt/network/mbedtls/include \
-	  -I $(shell pwd)/kawaii-mqtt/network \
-	  -I $(shell pwd)/kawaii-mqtt/mqttclient \
-	  -I $(shell pwd)/kawaii-mqtt/network/mbedtls/wrapper \
-	  -I $(shell pwd)/kawaii-mqtt/network/mbedtls/include/mbedtls
-
+			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/include \
+			-I $(shell pwd)/kawaii-mqtt/network \
+			-I $(shell pwd)/kawaii-mqtt/mqttclient \
+			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/wrapper \
+			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/include/mbedtls \
+			-I $(CONSOLE)/ui \
+			-I $(CONSOLE)/usr_thread \
+			-I $(CONSOLE)/kawaii-mqtt \
 
 LDFLAGS ?= -lm 
 LDFLAGS += -lpthread
@@ -26,13 +29,13 @@ BIN = LVGL
 
 
 #Collect the files to compile
-MAINSRC = ./main.c
+MAINSRC = ./main.c 
 
-include $(CONSOLE)/ui/lvgl/lvgl.mk
-include $(CONSOLE)/ui/lv_drivers/lv_drivers.mk
+
 # include $(CONSOLE)/lv_demos/lv_demo.mk
 include $(CONSOLE)/usr_thread/led.mk
 include $(CONSOLE)/kawaii-mqtt/kawai-mqtt.mk
+include $(CONSOLE)/ui/ui.mk
 
 
 OBJEXT ?= .o
@@ -48,6 +51,7 @@ OBJS = $(AOBJS) $(COBJS)
 ## MAINOBJ -> OBJFILES
 
 all: default
+	echo @echo "Build success!~_~!"
 
 %.o: %.c
 	$(CC)  $(CFLAGS) -c $< -o $@

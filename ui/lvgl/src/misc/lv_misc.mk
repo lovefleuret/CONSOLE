@@ -20,7 +20,7 @@ CSRCS += lv_txt.c
 CSRCS += lv_txt_ap.c
 CSRCS += lv_utils.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/misc
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/misc
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/misc
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/misc
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/misc"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/misc"

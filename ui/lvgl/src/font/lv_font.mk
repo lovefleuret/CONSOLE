@@ -30,7 +30,7 @@ CSRCS += lv_font_simsun_16_cjk.c
 CSRCS += lv_font_unscii_8.c
 CSRCS += lv_font_unscii_16.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/font
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/font
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/font
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/font
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/font"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/font"

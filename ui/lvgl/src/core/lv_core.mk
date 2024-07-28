@@ -14,7 +14,7 @@ CSRCS += lv_event.c
 CSRCS += lv_refr.c
 CSRCS += lv_theme.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/core
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/core
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/core
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/core
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/core"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/core"

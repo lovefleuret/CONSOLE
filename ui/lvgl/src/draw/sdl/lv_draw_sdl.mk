@@ -13,7 +13,7 @@ CSRCS += lv_draw_sdl_texture_cache.c
 CSRCS += lv_draw_sdl_utils.c
 CSRCS += lv_draw_sdl_layer.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sdl
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sdl
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sdl
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sdl
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sdl"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sdl"

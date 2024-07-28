@@ -14,7 +14,7 @@ CSRCS += lv_switch.c
 CSRCS += lv_table.c
 CSRCS += lv_textarea.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/widgets
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/widgets
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/widgets
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/widgets
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/widgets"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/widgets"

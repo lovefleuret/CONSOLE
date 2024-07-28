@@ -11,7 +11,7 @@ CSRCS += lv_draw_sw_rect.c
 CSRCS += lv_draw_sw_transform.c
 CSRCS += lv_draw_sw_layer.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sw
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sw
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sw
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sw
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sw"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sw"

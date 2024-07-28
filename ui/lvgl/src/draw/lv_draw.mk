@@ -12,14 +12,14 @@ CSRCS += lv_img_buf.c
 CSRCS += lv_img_cache.c
 CSRCS += lv_img_decoder.c
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/draw"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw"
 
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/arm2d/lv_draw_arm2d.mk
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/nxp/lv_draw_nxp.mk
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sdl/lv_draw_sdl.mk
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/stm32_dma2d/lv_draw_stm32_dma2d.mk
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/sw/lv_draw_sw.mk
-include $(CONSOLE)/$(LVGL_DIR_NAME)/src/draw/swm341_dma2d/lv_draw_swm341_dma2d.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/arm2d/lv_draw_arm2d.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/nxp/lv_draw_nxp.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sdl/lv_draw_sdl.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/stm32_dma2d/lv_draw_stm32_dma2d.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/sw/lv_draw_sw.mk
+include $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/draw/swm341_dma2d/lv_draw_swm341_dma2d.mk

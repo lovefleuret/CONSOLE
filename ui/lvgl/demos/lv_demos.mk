@@ -1,1 +1,1 @@
-CSRCS += $(shell find -L $(CONSOLE)/$(LVGL_DIR_NAME)/demos -name "*.c")
+CSRCS += $(shell find -L $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/demos -name "*.c")

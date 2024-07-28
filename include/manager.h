@@ -2,6 +2,9 @@
 #define MANAGER_H
 
 #include <string.h>
+#include "../ui/ui.h"
+#include "../kawaii-mqtt/mqtt.h"
+
 
 typedef struct Console {
 	char *name;
@@ -17,6 +20,7 @@ Console_t* dev_probe(char *name);
 void ConsoleSysInit(void);
 void ConsoleSysRun(void);
 void ConsoleRelease(void);
+
 
 
 extern void register_mqtt(void);

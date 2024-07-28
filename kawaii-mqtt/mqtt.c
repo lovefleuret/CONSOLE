@@ -5,11 +5,21 @@
 
 int res;
 pthread_t thread1;
+mqtt_client_t *client = NULL;
 
+
+
+static void topic1_handler(void* client, message_data_t* msg)
+{
+    (void) client;
+    MQTT_LOG_I("-----------------------------------------------------------------------------------");
+    MQTT_LOG_I("%s:%d %s()...\ntopic: %s\nmessage:%s", __FILE__, __LINE__, __FUNCTION__, msg->topic_name, (char*)msg->message->payload);
+    MQTT_LOG_I("-----------------------------------------------------------------------------------");
+}
 static void* mqtt_publish_thread(void* args)
 {
     
-    mqtt_client_t *client = (mqtt_client_t *)arg;
+   
 	int cnt = 0;
 
     char buf[100] = { 0 };
@@ -41,7 +51,7 @@ static void* mqtt_publish_thread(void* args)
 static void mqtt_run(void* pParams)
 {   
 
-    res = pthread_create(&thread1, NULL, mqtt_publish_thread, client);
+    res = pthread_create(&thread1, NULL, mqtt_publish_thread, NULL);
     if(res != 0) {
         MQTT_LOG_E("create mqtt publish thread fail");
         exit(res);
@@ -51,7 +61,7 @@ static void mqtt_run(void* pParams)
 static void mqtt_init(void)
 {
     
-    mqtt_client_t *client = NULL;
+    
     
     printf("\nwelcome to mqttclient test...\n");
 
@@ -66,9 +76,8 @@ static void mqtt_init(void)
     mqtt_set_port(client, "5000");
 #endif
 
-//    mqtt_set_host(client, "120.25.213.14"); /* iot.100ask.net */
-    mqtt_set_host(client, "192.168.64.45"); /* iot.100ask.net */
-//    mqtt_set_host(client, "192.168.0.112"); /* iot.100ask.net */
+    mqtt_set_host(client, "192.168.64.45"); 
+
     mqtt_set_client_id(client, random_string(10));
     mqtt_set_user_name(client, random_string(10));
     mqtt_set_password(client, random_string(10));
@@ -83,7 +92,7 @@ static void mqtt_init(void)
     
 }
 
-static oid mqtt_release(void)
+static void mqtt_exit(void)
 {
     pthread_join(thread1, NULL);
 }
@@ -92,10 +101,10 @@ Console_t mqtt_thread = {
     .name = "mqtt",
     .Create = mqtt_init,
     .Run = mqtt_run,
-    .Release = mqtt_release,
+    .Release = mqtt_exit,
 
     .ptNext = NULL,
-}
+};
 
 
 void register_mqtt(void)

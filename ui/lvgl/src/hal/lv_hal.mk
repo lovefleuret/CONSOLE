@@ -1,8 +1,6 @@
-CSRCS += lv_hal_disp.c
-CSRCS += lv_hal_indev.c
-CSRCS += lv_hal_tick.c
+CSRCS += $(wildcard $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/hal/*.c)
 
-DEPPATH += --dep-path $(CONSOLE)/$(LVGL_DIR_NAME)/src/hal
-VPATH += :$(CONSOLE)/$(LVGL_DIR_NAME)/src/hal
+DEPPATH += --dep-path $(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/hal
+VPATH += :$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/hal
 
-CFLAGS += "-I$(CONSOLE)/$(LVGL_DIR_NAME)/src/hal"
+CFLAGS += "-I$(CONSOLE)/$(UI_DIR_NAME)/$(LVGL_DIR_NAME)/src/hal"

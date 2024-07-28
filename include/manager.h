@@ -5,6 +5,7 @@
 #include "../ui/ui.h"
 #include "../kawaii-mqtt/mqtt.h"
 #include "../usr_thread/ledtest.h"
+#include "../usr_thread/test2.h"
 #include <stdio.h>
 
 #define DEBUG printf("------------%d-----------%s---------\n",  __LINE__, __FUNCTION__);

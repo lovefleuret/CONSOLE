@@ -113,8 +113,8 @@ static void ledtest_create(void)
 Console_t lv_test = {
 	.name = "ledtest",
 	.Create = ledtest_create,
-	.Run = led_run,
-	.Release = ledtest_exit,
+	.Run = NULL,
+	.Release = NULL,
 	.ptNext = NULL
 };
 

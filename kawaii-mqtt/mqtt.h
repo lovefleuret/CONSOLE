@@ -12,4 +12,8 @@
 #include "mqtt_log.h"
 #include "mqttclient.h"
 
+
+
+void register_mqtt(void);
+
 #endif

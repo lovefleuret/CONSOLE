@@ -3,8 +3,8 @@
 #
 # ⭐全速编译命令： make clean && make -j$(nproc)
 
-CC ?= gcc
-# CC := arm-buildroot-linux-gnueabihf-gcc	# 注意配置工具链！
+# CC ?= gcc
+CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
 CONSOLE ?= ${shell pwd}
 
@@ -28,11 +28,10 @@ BIN = LVGL
 #Collect the files to compile
 MAINSRC = ./main.c
 
-include $(CONSOLE)/lvgl/lvgl.mk
-include $(CONSOLE)/lv_drivers/lv_drivers.mk
-# include $(CONSOLE)/lv_100ask_teach_demos/lv_100ask_teach_demos.mk
+include $(CONSOLE)/ui/lvgl/lvgl.mk
+include $(CONSOLE)/ui/lv_drivers/lv_drivers.mk
 # include $(CONSOLE)/lv_demos/lv_demo.mk
-include $(CONSOLE)/led/led.mk
+include $(CONSOLE)/usr_thread/led.mk
 include $(CONSOLE)/kawaii-mqtt/kawai-mqtt.mk
 
 

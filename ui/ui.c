@@ -142,12 +142,7 @@ void *lvgl_thread(void *arg)
 
     led_test();
 
-    while(1)
-    {   
-        lv_task_handler();
-        
-        usleep(5000);
-    }
+    
     pthread_exit(NULL);
 
 }
@@ -187,37 +182,6 @@ int LVGL_init(void)
     indev_drv.read_cb = evdev_read;
     lv_indev_t * my_indev = lv_indev_drv_register(&indev_drv); 
 
-
-
-//!-------------------------------------------------------------------------------------------
-//?   
-
-//!-------------------------------------------------------------------------------------------
-    
-
-
-
-//!-------------------------------------------------------------------------------------------
-    int res1;
-    pthread_t thread2;
-    
-    res1 = pthread_create(&thread2, NULL, lvgl_thread, client);
-    if(res1 != 0) {
-        MQTT_LOG_E("create mqtt publish thread fail");
-        exit(res1);
-    }
-
-    // lv_demo_music();
-    /*Create a Demo*/
-    // lv_100ask_demo_course_2_1_1();
-    // lv_demo_widgets();
-
-    /*Handle LitlevGL tasks (tickless mode)*/
-
-    pthread_join(thread1, NULL);
-    pthread_join(thread2, NULL);
-    
-    close(fd);
 
     return 0;
 }

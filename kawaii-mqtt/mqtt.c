@@ -61,8 +61,6 @@ static void mqtt_run(void* pParams)
 static void mqtt_init(void)
 {
     
-    
-    
     printf("\nwelcome to mqttclient test...\n");
 
     mqtt_log_init();
@@ -73,7 +71,7 @@ static void mqtt_init(void)
     mqtt_set_port(client, "8883");
     mqtt_set_ca(client, (char*)test_ca_get());
 #else
-    mqtt_set_port(client, "5000");
+    mqtt_set_port(client, "5888");
 #endif
 
     mqtt_set_host(client, "192.168.64.45"); 
@@ -93,8 +91,9 @@ static void mqtt_init(void)
 }
 
 static void mqtt_exit(void)
-{
+{   
     pthread_join(thread1, NULL);
+
 }
 
 Console_t mqtt_thread = {

@@ -7,10 +7,15 @@ Console_t* H_Conslole = NULL;
 
 
 Console_t* dev_join(Console_t *ptConsole)
-{
-    ptConsole->Create();
+{   
 
-    ptConsole->ptNext = H_Conslole->ptNext;
+    if(H_Conslole == NULL)
+    {
+        H_Conslole = ptConsole;
+        return H_Conslole;
+    }
+    
+    ptConsole->ptNext = H_Conslole;
     H_Conslole = ptConsole;
 
 
@@ -22,7 +27,6 @@ Console_t* dev_join(Console_t *ptConsole)
 Console_t* dev_probe(char *name)
 {
 	Console_t* ptTmp = H_Conslole;
-
 	while (ptTmp)
 	{
 		if (strcmp(name, ptTmp->name) == 0)
@@ -38,16 +42,15 @@ Console_t* dev_probe(char *name)
 
 
 void ConsoleSysInit(void)
-{
-    LVGL_init();
+{   
 
     Console_t* ptTmp = H_Conslole;
-    Console_t* ptNext = NULL;
+    
     while(ptTmp)
     {
-        ptNext = ptTmp->ptNext;
-        ptTmp->Create();
-        ptTmp = ptNext;
+        if(ptTmp->Create)
+            ptTmp->Create();
+        ptTmp = ptTmp->ptNext;
     }
     return;
 }
@@ -55,12 +58,11 @@ void ConsoleSysInit(void)
 void ConsoleSysRun(void)
 {   
     Console_t* ptTmp = H_Conslole;
-    Console_t* ptNext = NULL;
     while(ptTmp)
     {
-        ptNext = ptTmp->ptNext;
-        ptTmp->Run(NULL);
-        ptTmp = ptNext;
+        if(ptTmp->Run)
+            ptTmp->Run(NULL);
+        ptTmp = ptTmp->ptNext;
     }
 
     return;
@@ -69,33 +71,41 @@ void ConsoleSysRun(void)
 void ConsoleRelease(void)
 {
     Console_t* ptTmp = H_Conslole;
-    Console_t* ptNext = NULL;
+    if(ptTmp == NULL)
+        return;
 
     while (ptTmp)
     {
-        ptNext = ptTmp->ptNext;
-        ptTmp->Release();
-        ptTmp = ptNext;
+        if(ptTmp->Release)
+            ptTmp->Release();
+        
+        ptTmp = ptTmp->ptNext;
     }
 
     return;
 }
 
-
+void register_Console(void)
+{
+    register_mqtt();
+    register_test();
+}
 int main(int args, char** argv, char** env)
 {   
+
+    LVGL_init();
+
+    DEBUG
+    
+    register_Console();
 
     ConsoleSysInit();
 
     ConsoleSysRun();
+    DEBUG
+
 
     ConsoleRelease();
-
-    while(1)
-    {   
-        lv_task_handler();
-        
-        usleep(5000);
-    }
+   
     return 0;
 }

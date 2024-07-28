@@ -4,5 +4,8 @@
         "lv_demos.h": "c",
         "lv_100ask_teach_demos.h": "c"
     },
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "files.exclude": {
+        "**/*.o": true
+    }
 }

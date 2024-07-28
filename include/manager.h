@@ -4,8 +4,10 @@
 #include <string.h>
 #include "../ui/ui.h"
 #include "../kawaii-mqtt/mqtt.h"
+#include "../usr_thread/ledtest.h"
+#include <stdio.h>
 
-
+#define DEBUG printf("------------%d-----------%s---------\n",  __LINE__, __FUNCTION__);
 typedef struct Console {
 	char *name;
 	void (*Create)(void);

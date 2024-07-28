@@ -33,10 +33,9 @@ MAINSRC = ./main.c
 
 
 # include $(CONSOLE)/lv_demos/lv_demo.mk
-include $(CONSOLE)/usr_thread/led.mk
 include $(CONSOLE)/kawaii-mqtt/kawai-mqtt.mk
 include $(CONSOLE)/ui/ui.mk
-
+include $(CONSOLE)/usr_thread/usr_thread.mk
 
 OBJEXT ?= .o
 
@@ -51,7 +50,7 @@ OBJS = $(AOBJS) $(COBJS)
 ## MAINOBJ -> OBJFILES
 
 all: default
-	echo @echo "Build success!~_~!"
+	@echo "Build success!~_~!"
 
 %.o: %.c
 	$(CC)  $(CFLAGS) -c $< -o $@
@@ -60,7 +59,7 @@ all: default
 default: $(AOBJS) $(COBJS) $(MAINOBJ)
 	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
-	find . -type f -name "*.o" -exec mv {} $(CONSOLE)/obj/ \;
+	# find . -type f -name "*.o" -exec mv {} $(CONSOLE)/obj/ \;
 	mv $(BIN) $(CONSOLE)/bin/
 
 clean: 

@@ -1,12 +1,9 @@
 
 
 
-#include "ledtest.h"
+#include "main_page.h"
 
-/*
- * ./ledtest /dev/100ask_led0 on
- * ./ledtest /dev/100ask_led0 off
- */
+
 
 int fd = -1;
 char status;
@@ -45,16 +42,17 @@ static void led_close(int fd)
 
 int res2;
 pthread_t thread2;
-static void ledtest_exit(void)
+static void mainpage_exit(void)
 {	
 	led_close(fd);
 	pthread_join(thread2, NULL);
 }
 
-static void* ledtest_thread(void* args)
+static void* mainpage_thread(void* args)
 {
 	while(1)
-	{
+	{	
+		
 		lv_task_handler();
 		usleep(5000);
 	}
@@ -62,9 +60,9 @@ static void* ledtest_thread(void* args)
 }
 
 
-static void led_run(void* p)
+static void mainpage_run(void* p)
 {
-	res2 = pthread_create(&thread2, NULL, ledtest_thread, NULL);
+	res2 = pthread_create(&thread2, NULL, mainpage_thread, NULL);
 	if(res2 != 0) {
 		printf("create ledtest thread fail");
 		exit(res2);
@@ -89,7 +87,7 @@ static void led_button_event_cb(lv_event_t * e)
         
     }
 }
-static void ledtest_create(void)
+static void mainpage_create(void)
 {
 	led_page = lv_obj_create(lv_scr_act());
     lv_obj_set_size(led_page, 1024, 600);
@@ -110,15 +108,15 @@ static void ledtest_create(void)
 }
 
 
-Console_t lv_test = {
-	.name = "ledtest",
-	.Create = ledtest_create,
-	.Run = NULL,
-	.Release = NULL,
+Console_t lv_mainpage = {
+	.name = "lv_mainpage",
+	.Create = mainpage_create,
+	.Run = mainpage_run,
+	.Release = mainpage_exit,
 	.ptNext = NULL
 };
 
-void register_test(void)
+void register_lvgl(void)
 {	
-	dev_join(&lv_test);
+	dev_join(&lv_mainpage);
 }

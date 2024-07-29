@@ -1,18 +1,20 @@
-// {
-//     "name": "My Dev Container",
-//     "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
-//     "features": {
-//         "docker-in-docker": "latest"
-//     },
-//     "settings": {
-//         "terminal.integrated.shell.linux": "/bin/bash"
-//     },
-//     "extensions": [
-//         "ms-vscode.cpptools",
-//         "ms-python.python",
-//         "ms-azuretools.vscode-docker",
-//         "llvm-vs-code-extensions.vscode-clangd" // 添加 clangd 插件
-//     ],
-//     "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
-//     "remoteUser": "vscode"
-// }
+{
+    "name": "My Dev Container",
+    "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
+    "features": {
+        "docker-in-docker": "latest"
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "github.copilot",
+        "mhutchie.git-graph"
+        
+    ],
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
+    "remoteUser": "vscode"
+}

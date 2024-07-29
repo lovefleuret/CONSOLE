@@ -1,7 +1,5 @@
-#ifndef TEST2_H
-#define TEST2_H
-
-
+#ifndef MAIN_PAGE_H
+#define MAIN_PAGE_H
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -15,5 +13,7 @@
 
 
 
-void register_test2(void);
-#endif /* TEST2_H */
+void register_test(void);
+
+
+#endif

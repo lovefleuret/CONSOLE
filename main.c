@@ -43,6 +43,7 @@ Console_t* dev_probe(char *name)
 
 void ConsoleSysInit(void)
 {   
+    LVGL_init();
 
     Console_t* ptTmp = H_Conslole;
     
@@ -91,44 +92,31 @@ void ConsoleRelease(void)
 void register_Console(void)
 {
     register_mqtt();
-    register_test();
-    register_test2();
+    register_lvgl();
 
 }
 
-static void* lvgl_thread(void* args)
-{
-    while(1)
-    {
-        lv_task_handler();
-        usleep(5000);
-    }
-}
+// static void* lvgl_thread(void* args)
+// {
+//     while(1)
+//     {
+//         lv_task_handler();
+//         usleep(5000);
+//     }
+// }
 
 int main(int args, char** argv, char** env)
 {   
 
-    LVGL_init();
-
-   
     
     register_Console();
 
     ConsoleSysInit();
 
     ConsoleSysRun();
-   
-
 
     ConsoleRelease();
    
-    pthread_t lvgl;
-    int res_t = pthread_create(&lvgl, NULL, lvgl_thread, NULL);
-    if(res_t != 0)
-    {
-        printf("create lvgl thread fail\n");
-        exit(res_t);
-    }
 
     return 0;
 }

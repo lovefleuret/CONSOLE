@@ -4,8 +4,7 @@
 #include <string.h>
 #include "../ui/ui.h"
 #include "../kawaii-mqtt/mqtt.h"
-#include "../usr_thread/ledtest.h"
-#include "../usr_thread/test2.h"
+#include "../usr_thread/main_page.h"
 #include <stdio.h>
 
 #define DEBUG printf("------------%d-----------%s---------\n",  __LINE__, __FUNCTION__);

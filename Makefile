@@ -3,8 +3,8 @@
 #
 # ⭐全速编译命令： make clean && make -j$(nproc)
 
-# CC ?= gcc
-CC := arm-buildroot-linux-gnueabihf-gcc	
+CC ?= gcc
+# CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
 UI_DIR_NAME ?= ui
 CONSOLE ?= ${shell pwd}

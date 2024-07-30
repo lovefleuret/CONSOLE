@@ -1,0 +1,5 @@
+config DEBUG
+	bool "Enable DEBUG"
+	default n
+	help
+		This option enables the 'DEBUG' functionality.

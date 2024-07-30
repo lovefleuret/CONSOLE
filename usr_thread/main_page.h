@@ -14,6 +14,7 @@
 
 
 void register_test(void);
+void register_lvgl(void);
 
 
 #endif

@@ -1,10 +1,17 @@
-#
 # Makefile
 #
-# ⭐全速编译命令： make clean && make -j$(nproc)
+# 全速编译命令： make clean && make -j$(nproc)
 
-CC ?= gcc
-# CC := arm-buildroot-linux-gnueabihf-gcc	
+# CC ?= gcc
+
+KCONFIG = config
+CONFIG = .config
+CONFIG_TIMESTAMP = .config.timestamp
+
+-include $(CONFIG)
+TOOL = ./scripts/mconf
+
+CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
 UI_DIR_NAME ?= ui
 CONSOLE ?= ${shell pwd}
@@ -32,7 +39,7 @@ LDFLAGS += -lpthread
 BIN = CONSOLE.bin
 
 
-#Collect the files to compile
+# Collect the files to compile
 MAINSRC = ./main.c 
 
 
@@ -49,9 +56,9 @@ COBJS = $(CSRCS:.c=$(OBJEXT))
 MAINOBJ = $(MAINSRC:.c=$(OBJEXT))
 
 SRCS = $(ASRCS) $(CSRCS) $(MAINSRC)
-OBJS = $(AOBJS) $(COBJS)
+OBJS = $(AOBJS) $(COBJS) $(MAINOBJ)
 
-## MAINOBJ -> OBJFILES
+
 
 all: default
 	@echo "------------------------------------------------------------------------------\n"
@@ -59,22 +66,45 @@ all: default
 	@echo "------------------------------------------------------------------------------\n"
 
 %.o: %.c
-	$(CC)  $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "CC $<"
+
+
+# Ensure all object files are rebuilt if .config changes
+$(AOBJS) $(COBJS) $(MAINOBJ): $(CONFIG_TIMESTAMP)
+
+# Update timestamp if .config changes
+$(CONFIG_TIMESTAMP): $(CONFIG)
+	@touch $(CONFIG_TIMESTAMP)
 
 
 default: $(AOBJS) $(COBJS) $(MAINOBJ)
 	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
-	# find . -type f -name "*.o" -exec mv {} $(CONSOLE)/obj/ \;
 	mv $(BIN) $(CONSOLE)/bin/
 
+# 配置菜单
+menuconfig:
+	@if [ ! -f $(KCONFIG)/Kconfig ]; then \
+		echo "Kconfig file not found!"; \
+		exit 1; \
+	fi
+	$(TOOL) $(KCONFIG)/Kconfig
+	@touch $(CONFIG)
+
+# 生成 .config 文件
+.config:
+	touch .config
+	$(MAKE) menuconfig
 
 clean: 
 	rm -f $(BIN) $(AOBJS) $(COBJS) $(MAINOBJ) ./bin/* ./obj/*
+	rm -f $(CONFIG_TIMESTAMP)
 	@echo "------------------------------------------------------------------------------\n"
 	@echo "---------------------------Clean all files success*_*-------------------------\n"
 	@echo "------------------------------------------------------------------------------\n"
 
 
-.PTHONY: all clean
+
+
+.PHONY: all clean menuconfig

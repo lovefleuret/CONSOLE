@@ -96,14 +96,7 @@ void register_Console(void)
 
 }
 
-// static void* lvgl_thread(void* args)
-// {
-//     while(1)
-//     {
-//         lv_task_handler();
-//         usleep(5000);
-//     }
-// }
+
 
 int main(int args, char** argv, char** env)
 {   

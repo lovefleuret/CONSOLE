@@ -1,2 +1,2 @@
 #!/bin/bash
-cp bin/LVGL ~/Desktop/nfs_rootfs/
+cp bin/CONSOLE.bin ~/Desktop/nfs_rootfs/

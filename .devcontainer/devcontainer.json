@@ -12,8 +12,8 @@
         "ms-python.python",
         "ms-azuretools.vscode-docker",
         "github.copilot",
-        "mhutchie.git-graph"
-        
+        "mhutchie.git-graph",
+        "alefragnani.Bookmarks"
     ],
     "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
     "remoteUser": "vscode"

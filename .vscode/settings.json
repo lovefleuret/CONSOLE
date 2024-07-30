@@ -2,7 +2,7 @@
     "files.associations": {
         "lv_demo_widgets.h": "c",
         "lv_demos.h": "c",
-        "lv_100ask_teach_demos.h": "c"
+        "manager.h": "c"
     },
     "cmake.ignoreCMakeListsMissing": true,
     "files.exclude": {

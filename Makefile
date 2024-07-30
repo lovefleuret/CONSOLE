@@ -25,7 +25,7 @@ CFLAGS += -I $(shell pwd)/kawaii-mqtt/mqtt/  \
 LDFLAGS ?= -lm 
 LDFLAGS += -lpthread
 
-BIN = LVGL
+BIN = CONSOLE.bin
 
 
 #Collect the files to compile
@@ -50,19 +50,27 @@ OBJS = $(AOBJS) $(COBJS)
 ## MAINOBJ -> OBJFILES
 
 all: default
-	@echo "Build success!~_~!"
+	@echo "------------------------------------------------------------------------------\n"
+	@echo "---------------------------CONSOLE BUILD SUCCESS!~_~!-------------------------\n"
+	@echo "------------------------------------------------------------------------------\n"
 
 %.o: %.c
 	$(CC)  $(CFLAGS) -c $< -o $@
 	@echo "CC $<"
-    
+
+
 default: $(AOBJS) $(COBJS) $(MAINOBJ)
 	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
 	# find . -type f -name "*.o" -exec mv {} $(CONSOLE)/obj/ \;
 	mv $(BIN) $(CONSOLE)/bin/
 
+
 clean: 
 	rm -f $(BIN) $(AOBJS) $(COBJS) $(MAINOBJ) ./bin/* ./obj/*
+	@echo "------------------------------------------------------------------------------\n"
+	@echo "---------------------------Clean all files success*_*-------------------------\n"
+	@echo "------------------------------------------------------------------------------\n"
 
 
+.PTHONY: all clean

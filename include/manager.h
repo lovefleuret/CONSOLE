@@ -6,8 +6,9 @@
 #include "../kawaii-mqtt/mqtt.h"
 #include "../usr_thread/main_page.h"
 #include <stdio.h>
+#include "debug.h"
 
-#define DEBUG printf("------------%d-----------%s---------\n",  __LINE__, __FUNCTION__);
+
 typedef struct Console {
 	char *name;
 	void (*Create)(void);

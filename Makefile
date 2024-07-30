@@ -22,6 +22,10 @@ CFLAGS += -I $(shell pwd)/kawaii-mqtt/mqtt/  \
 			-I $(CONSOLE)/usr_thread \
 			-I $(CONSOLE)/kawaii-mqtt \
 
+ifeq ($(CONFIG_DEBUG), y)
+	CFLAGS += -DCONFIG_DEBUG
+endif
+
 LDFLAGS ?= -lm 
 LDFLAGS += -lpthread
 

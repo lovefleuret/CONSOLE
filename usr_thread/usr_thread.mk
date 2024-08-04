@@ -1,3 +1,5 @@
-LED_DIR ?= usr_thread
+USR_DIR ?= usr_thread
 
-CSRCS += $(wildcard $(CONSOLE)/$(LED_DIR)/*.c)
+
+
+CSRCS += $(shell find -L $(CONSOLE)/$(USR_DIR) -name "*.c")

@@ -9,7 +9,7 @@
 #include "lvgl/src/lv_api_map.h"
 #include "manager.h"
 
-#include "../include/manager.h"
+#include "manager.h"
 
 
 typedef enum SCREEN_TYPE{

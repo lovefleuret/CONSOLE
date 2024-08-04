@@ -28,8 +28,7 @@ CFLAGS += -I $(shell pwd)/kawaii-mqtt/mqtt/  \
 			-I $(CONSOLE)/ui \
 			-I $(CONSOLE)/usr_thread \
 			-I $(CONSOLE)/kawaii-mqtt \
-			-I $(CONSOLE)/usr_thread \
-			-I $(CONSOLE)/src 
+
 
 ifeq ($(CONFIG_DEBUG), y)
 	CFLAGS += -DCONFIG_DEBUG

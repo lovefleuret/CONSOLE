@@ -21,7 +21,9 @@ clean:
 # ab-y := a.o b.o
 # obj-m += ab.o
 
-obj-m += leddrv.o
+obj-m += dht11_drv.o
+obj-m += sg90_drv.o
+obj-m += sr04_drv.o
 
 
 

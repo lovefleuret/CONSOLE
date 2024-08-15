@@ -2,6 +2,7 @@
 
 
 #include "main_page.h"
+#include <pthread.h>
 
 #define MY_DEV_NUM 1
 
@@ -19,6 +20,8 @@ extern lv_obj_t* main_page;
 extern lv_obj_t* menu_page;
 extern lv_obj_t* menu_page;
 extern void create_menu_page();
+extern pthread_mutex_t dht11_mutex;
+extern struct dht11_data dht11_num;
 
 
 static int temp_value = 30;
@@ -199,7 +202,6 @@ static void create_tah_cont(lv_obj_t* parent)
 
     
     lv_obj_t* label_temp = lv_label_create(tah_cont);
-    lv_label_set_text_fmt(label_temp, "temp: %d°C", 20);
     lv_obj_set_style_text_font(label_temp, &lv_font_montserrat_16, LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(label_temp, lv_color_make(0xff, 0xff, 0xff), LV_STATE_DEFAULT);
     lv_obj_align_to(label_temp, temp_arc, LV_ALIGN_CENTER, 0, 0);
@@ -223,12 +225,16 @@ static void create_tah_cont(lv_obj_t* parent)
 
 
     lv_obj_t* label_humi = lv_label_create(tah_cont);
-    lv_label_set_text_fmt(label_humi, "humi: %d%%", 30);
     lv_obj_set_style_text_font(label_humi, &lv_font_montserrat_16, LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(label_humi, lv_color_make(0xff, 0xff, 0xff), LV_STATE_DEFAULT);
     lv_obj_align_to(label_humi, humi_arc, LV_ALIGN_CENTER, 0, 0);
     lv_obj_add_style(humi_arc, &style_arc, LV_PART_INDICATOR);
 
+
+    // pthread_mutex_lock(&dht11_mutex);
+    lv_label_set_text_fmt(label_temp, "temp: %d.%d°C", dht11_num.temperature, dht11_num.temperature_decimal);
+    lv_label_set_text_fmt(label_humi, "humi: %d%%.%d", dht11_num.humidity, dht11_num.humidity_decimal);
+    // pthread_mutex_unlock(&dht11_mutex);
 
     lv_arc_set_value(humi_arc, humi_value); //! 这个可以设置湿度值 0-100的湿度
 

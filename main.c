@@ -1,5 +1,6 @@
 
 
+#include "dht11_thread/dht11_usr.h"
 #include "include/manager.h"
 
 
@@ -92,8 +93,10 @@ void ConsoleRelease(void)
 void register_Console(void)
 {
     register_mqtt();
+    
+    register_dht11();
+    
     register_lvgl();
-
 }
 
 

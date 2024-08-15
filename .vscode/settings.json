@@ -6,6 +6,16 @@
     },
     "cmake.ignoreCMakeListsMissing": true,
     "files.exclude": {
-        "**/*.o": true
-    }
+        "**/*.o": true,
+        "**/*.cmd": true,
+    },
+    "workbench.colorCustomizations": {
+        "tree.indentGuidesStroke": "#FFED72",
+        "tree.inactiveIndentGuidesStroke": "#686A48",
+        "minimap.background": "#00000000",
+        "scrollbar.shadow": "#00000000"
+    },
+    "clangd.arguments": [
+        "--background-index",
+    ]
 }

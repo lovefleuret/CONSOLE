@@ -5,6 +5,7 @@
 #include "../ui/ui.h"
 #include "../kawaii-mqtt/mqtt.h"
 #include "../usr_thread/usr_gui/src/main_page.h"
+#include "../usr_thread/dht11_thread/dht11_usr.h"
 #include <stdio.h>
 #include "debug.h"
 

@@ -8,8 +8,7 @@
 #include <string.h>
 #include "lvgl/src/lv_api_map.h"
 #include "manager.h"
-
-#include "manager.h"
+#include "../../dht11_thread/dht11_usr.h"
 
 
 typedef enum SCREEN_TYPE{

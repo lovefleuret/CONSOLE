@@ -6,13 +6,14 @@
 KCONFIG = config
 CONFIG = .config
 CONFIG_TIMESTAMP = .config.timestamp
-
+DRIVER_DIR = ./hardware_driver
+KERNEL_DIR = ./Linux-4.9.88-kernel
 -include $(CONFIG)
 TOOL = ./scripts/mconf
+TRACK = bear
 
-
-CC ?= gcc
-# CC := arm-buildroot-linux-gnueabihf-gcc	
+# CC ?= gcc
+CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
 UI_DIR_NAME ?= ui
 CONSOLE ?= ${shell pwd}
@@ -62,10 +63,18 @@ OBJS = $(AOBJS) $(COBJS) $(MAINOBJ)
 
 
 
-all: default
-	@echo "------------------------------------------------------------------------------\n"
-	@echo "---------------------------CONSOLE BUILD SUCCESS!~_~!-------------------------\n"
-	@echo "------------------------------------------------------------------------------\n"
+all: default driver kernel
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+	@echo -e "\e[47m---------------------------Build all files success*_*-------------------------\e[0m"
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+
+driver: kernel
+	$(TRACK) $(MAKE) -C $(DRIVER_DIR)
+
+kernel:
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) imx6ull_defconfig
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) dtbs
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) zImage -j4
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -85,6 +94,7 @@ default: $(AOBJS) $(COBJS) $(MAINOBJ)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
 	mv $(BIN) $(CONSOLE)/bin/
 
+
 # 配置菜单
 menuconfig:
 	@if [ ! -f $(KCONFIG)/Kconfig ]; then \
@@ -99,14 +109,24 @@ menuconfig:
 	touch .config
 	$(MAKE) menuconfig
 
-clean: 
+clean_app: 
 	rm -f $(BIN) $(AOBJS) $(COBJS) $(MAINOBJ) ./bin/* ./obj/*
 	rm -f $(CONFIG_TIMESTAMP)
-	@echo "------------------------------------------------------------------------------\n"
-	@echo "---------------------------Clean all files success*_*-------------------------\n"
-	@echo "------------------------------------------------------------------------------\n"
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+	@echo -e "\e[47m---------------------------Clean all app_files success*_*-------------------------\e[0m"
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+
+kernel_clean: driver_clean
+	$(MAKE) -C $(KERNEL_DIR) mrproper
 
 
+driver_clean:
+	$(MAKE) -C $(DRIVER_DIR) clean
 
 
-.PHONY: all clean menuconfig
+distclean: clean_app kernel_clean driver_clean
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+	@echo -e "\e[47m---------------------------Distclean all files success*_*---------------------\e[0m"
+	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
+
+.PHONY: all clean menuconfig distclean driver_clean kernel_clean clean_app

@@ -10,7 +10,7 @@ DRIVER_DIR = ./hardware_driver
 KERNEL_DIR = ./Linux-4.9.88-kernel
 -include $(CONFIG)
 TOOL = ./scripts/mconf
-TRACK = bear --append
+TRACK = $(if $(filter 1,$(USE_BEAR)),bear --append,)
 
 
 # CC ?= gcc
@@ -64,7 +64,7 @@ OBJS = $(AOBJS) $(COBJS) $(MAINOBJ)
 
 
 
-all: default driver kernel
+all: appliation driver kernel
 	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
 	@echo -e "\e[47m---------------------------Build all files success*_*-------------------------\e[0m"
 	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
@@ -78,7 +78,7 @@ kernel:
 	$(TRACK) $(MAKE) -C $(KERNEL_DIR) zImage -j4 
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(TRACK) $(CC) $(CFLAGS) -c $< -o $@ 
 	@echo "CC $<"
 
 
@@ -90,7 +90,7 @@ $(CONFIG_TIMESTAMP): $(CONFIG)
 	@touch $(CONFIG_TIMESTAMP)
 
 
-default: $(AOBJS) $(COBJS) $(MAINOBJ)
+appliation: $(AOBJS) $(COBJS) $(MAINOBJ)
 	$(TRACK) $(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
 	mv $(BIN) $(CONSOLE)/bin/

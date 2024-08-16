@@ -10,7 +10,8 @@ DRIVER_DIR = ./hardware_driver
 KERNEL_DIR = ./Linux-4.9.88-kernel
 -include $(CONFIG)
 TOOL = ./scripts/mconf
-TRACK = bear
+TRACK = bear --append
+
 
 # CC ?= gcc
 CC := arm-buildroot-linux-gnueabihf-gcc	
@@ -72,12 +73,12 @@ driver: kernel
 	$(TRACK) $(MAKE) -C $(DRIVER_DIR)
 
 kernel:
-	$(TRACK) $(MAKE) -C $(KERNEL_DIR) imx6ull_defconfig
-	$(TRACK) $(MAKE) -C $(KERNEL_DIR) dtbs
-	$(TRACK) $(MAKE) -C $(KERNEL_DIR) zImage -j4
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) imx6ull_defconfig 
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) dtbs 
+	$(TRACK) $(MAKE) -C $(KERNEL_DIR) zImage -j4 
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ 
 	@echo "CC $<"
 
 
@@ -90,7 +91,7 @@ $(CONFIG_TIMESTAMP): $(CONFIG)
 
 
 default: $(AOBJS) $(COBJS) $(MAINOBJ)
-	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
+	$(TRACK) $(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
 	mv $(BIN) $(CONSOLE)/bin/
 

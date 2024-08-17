@@ -17,7 +17,8 @@
         "akiramiyakoda.cppincludeguard",
         "nengneng.CVCode",
         "plorefice.devicetree",
-        "debugpig.highlight"
+        "debugpig.highlight",
+        "llvm-vs-code-extensions.vscode-clangd"
     ],
     "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
     "remoteUser": "vscode"

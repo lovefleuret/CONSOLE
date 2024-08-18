@@ -12,47 +12,20 @@
 #include "imx6ull.dtsi"
 
 / {
+
+
+    
+
+
     model = "Freescale i.MX6 ULL 14x14 EVK Board";
     compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
 
-
-
-    hs0038 {
-	status = "okay";
-	compatible = "xf,hs0038";
-	gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-    };
-
-    dht11 {
-	status = "okay";
-	compatible = "xf,dht11_t";
-	gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
-    };
-
-    sg90 {
-	compatible = "xf,sg90";
-	pwms = <&pwm3 0 20000000>;
-	status =  "okay";
-    };
-
     sr501 {
-	status = "disabled";	
-	compatible = "zs,sr501";	
-	gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
-	
-        pinctrl-names = "default";
-        pinctrl-0 = <&sr501pin>;
-
-	interrupt-parent = <&gpio4>;
-        interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
+        compatible = "wwj,sr501";
+        status = "okay";
+        gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;//!2个cell
     };
-
-    sr04 {
-	compatible = "xf,sr04";
-	trig-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
-	echo-gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
-    };
-
+    
     chosen {
         stdout-path = &uart1;
     };
@@ -288,12 +261,6 @@
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_i2c1>;
     status = "okay";
-
-    at24c02 {
-        compatible = "xf,at24c02";
-        reg = <0x50>;
-    };
-
 };
 
 &i2c2 {
@@ -446,19 +413,6 @@
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_hog_1>;
     imx6ul-evk {
-
-	sr501pin: sr501PinsGrp {                /*!< Function assigned for the core: Cortex-A7[ca7] */
-            fsl,pins = <
-                MX6UL_PAD_CSI_VSYNC__GPIO4_IO19            0x000010B0
-            >;
-	};
-
-	pinctrl_pwm3: pwm3Grp {
-            fsl,pins = <
-                MX6UL_PAD_GPIO1_IO04__PWM3_OUT             0x000010B0
-            >;
-        };
-
         pinctrl_hog_1: hoggrp-1 {
             fsl,pins = <
                 MX6UL_PAD_UART1_RTS_B__GPIO1_IO19   0x17059 /* SD1 CD */
@@ -584,7 +538,7 @@
                 MX6UL_PAD_GPIO1_IO01__GPIO1_IO01    0xb0
                 MX6UL_PAD_GPIO1_IO02__GPIO1_IO02    0xb0
                 MX6UL_PAD_GPIO1_IO03__GPIO1_IO03    0xb0
-                /* MX6UL_PAD_GPIO1_IO04__GPIO1_IO04    0xb0 */
+                MX6UL_PAD_GPIO1_IO04__GPIO1_IO04    0xb0
             >;
         };
 
@@ -748,7 +702,7 @@
         pinctrl_adc1: adc1grp {
             fsl,pins = <
                 MX6UL_PAD_GPIO1_IO03__GPIO1_IO03          0x000010B1
-                /* MX6UL_PAD_GPIO1_IO04__GPIO1_IO04          0x000010B1 */
+                MX6UL_PAD_GPIO1_IO04__GPIO1_IO04          0x000010B1
                 >;
         };
 
@@ -837,12 +791,6 @@
 &pwm1 {
     pinctrl-names = "default";
     pinctrl-0 = <&pinctrl_pwm1>;
-    status = "okay";
-};
-
-&pwm3 {
-    pinctrl-names = "default";
-    pinctrl-0 = <&pinctrl_pwm3>;
     status = "okay";
 };
 
@@ -962,7 +910,7 @@
     pinctrl-0 = <&pinctrl_adc1>;
     num-channels = <5>;
     vref-supply = <&reg_can_3v3>;
-    status = "disabled";
+    status = "okay";
 };
 
 &ecspi1 {
@@ -972,14 +920,6 @@
     fsl,spi-num-chipselects = <2>;
     cs-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>, <&gpio4 24 GPIO_ACTIVE_LOW>;
     status = "okay";
-
-    oled {
-	compatible = "zs,oled";
-	reg = <0>;
-	spi-max-frequency = <1000000>;
-	dc-gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
-    };
-
     /*   
     spidev0: spi@0 {
         compatible = "rohm,dh2228fv";
@@ -995,3 +935,4 @@
     */
     
 };
+

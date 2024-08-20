@@ -9,6 +9,16 @@
 					"label": "dts配置文件"
 				}
 			]
+		},
+		{
+			"path": "Linux-4.9.88-kernel/arch/arm/boot/dts/Makefile",
+			"bookmarks": [
+				{
+					"line": 532,
+					"column": 0,
+					"label": "修改dts文件名"
+				}
+			]
 		}
 	]
 }

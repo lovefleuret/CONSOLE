@@ -1,0 +1,8 @@
+
+//! 下面dts只是部分，需要放入到dts文件module节点后面
+   sr501 {
+        compatible = "wwj,sr501";
+        gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>; //!3个cell
+    };
+
+

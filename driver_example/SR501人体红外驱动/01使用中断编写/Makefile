@@ -5,7 +5,7 @@
 # 2.3 PATH,          比如: export PATH=$PATH:/home/book/100ask_roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin 
 
 
-KERN_DIR = ${shell pwd}/../Linux-4.9.88-kernel
+KERN_DIR = ${shell pwd}/../../Linux-4.9.88-kernel
 
 
 all:
@@ -21,10 +21,8 @@ clean:
 # ab-y := a.o b.o
 # obj-m += ab.o
 
-# obj-m += dht11_drv.o
-# obj-m += sg90_drv.o
-# obj-m += sr04_drv.o
-obj-m += SR501_driver.o
+
+obj-m += sr501_drv.o
 
 
 

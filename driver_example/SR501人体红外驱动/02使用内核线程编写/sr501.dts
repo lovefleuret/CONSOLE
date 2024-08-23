@@ -1,5 +1,5 @@
 
-//! 下面dts只是部分，需要放入到dts文件module节点后面
+//! 下面dts只是部分，需要放入到dts文件module节点后面，并且注意别的设备没有占用这个引脚
    sr501 {
         compatible = "wwj,sr501";
         gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>; //!3个cell

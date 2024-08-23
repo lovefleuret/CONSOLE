@@ -20,6 +20,6 @@
         "debugpig.highlight",
         "llvm-vs-code-extensions.vscode-clangd"
     ],
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential cmake git wget clangd && export PATH=$PATH:/usr/bin/clangd",
     "remoteUser": "vscode"
 }

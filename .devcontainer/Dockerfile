@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04
 # 安装必要的软件包
 RUN apt-get update && apt-get install -y \
     build-essential \
+    clangd \
     cmake \
     git \
     wget \
@@ -11,6 +12,6 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 
-
+ENV PATH="/usr/bin/clangd:${PATH}"
 # 切换到非root用户
 USER vscode

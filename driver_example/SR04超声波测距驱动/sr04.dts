@@ -1,0 +1,7 @@
+
+   sr04 {  /* for imx6ull */
+        compatible = "wwj,sr04";
+        trig-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+        echo-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+    };
+

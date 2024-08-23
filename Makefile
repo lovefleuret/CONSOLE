@@ -17,17 +17,17 @@ TRACK = $(if $(filter 1,$(USE_BEAR)),bear --append,)
 CC := arm-buildroot-linux-gnueabihf-gcc	
 LVGL_DIR_NAME ?= lvgl
 UI_DIR_NAME ?= ui
-CONSOLE ?= ${shell pwd}
+CONSOLE ?= $(shell pwd)
 
 CFLAGS ?= -O3 -g0 -I$(CONSOLE)/$(UI_DIR_NAME)  -Wall -Wshadow -Wundef -Wmissing-prototypes -Wno-discarded-qualifiers -Wall -Wextra -Wno-unused-function -Wno-error=strict-prototypes -Wpointer-arith -fno-strict-aliasing -Wno-error=cpp -Wuninitialized -Wmaybe-uninitialized -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wformat-security -Wno-ignored-qualifiers -Wno-error=pedantic -Wno-sign-compare -Wno-error=missing-prototypes -Wdouble-promotion -Wclobbered -Wdeprecated -Wempty-body -Wtype-limits -Wshift-negative-value -Wstack-usage=2048 -Wno-unused-value -Wno-unused-parameter -Wno-missing-field-initializers -Wuninitialized -Wmaybe-uninitialized -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wtype-limits -Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wpointer-arith -Wno-cast-qual -Wmissing-prototypes -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wno-discarded-qualifiers -Wformat-security -Wno-ignored-qualifiers -Wno-sign-compare
-CFLAGS += -I $(shell pwd)/include -I $(shell pwd)/kawaii-mqtt/common/log -I $(shell pwd)/kawaii-mqtt/platform/linux
-CFLAGS += -I $(shell pwd)/kawaii-mqtt/mqtt/  \
-          -I $(shell pwd)/kawaii-mqtt/common \
-			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/include \
-			-I $(shell pwd)/kawaii-mqtt/network \
-			-I $(shell pwd)/kawaii-mqtt/mqttclient \
-			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/wrapper \
-			-I $(shell pwd)/kawaii-mqtt/network/mbedtls/include/mbedtls \
+CFLAGS += -I $(CONSOLE)/include -I $(CONSOLE)/kawaii-mqtt/common/log -I $(CONSOLE)/kawaii-mqtt/platform/linux
+CFLAGS += -I $(CONSOLE)/kawaii-mqtt/mqtt/  \
+          -I $(CONSOLE)/kawaii-mqtt/common \
+			-I $(CONSOLE)/kawaii-mqtt/network/mbedtls/include \
+			-I $(CONSOLE)/kawaii-mqtt/network \
+			-I $(CONSOLE)/kawaii-mqtt/mqttclient \
+			-I $(CONSOLE)/kawaii-mqtt/network/mbedtls/wrapper \
+			-I $(CONSOLE)/kawaii-mqtt/network/mbedtls/include/mbedtls \
 			-I $(CONSOLE)/ui \
 			-I $(CONSOLE)/usr_thread \
 			-I $(CONSOLE)/kawaii-mqtt \

@@ -19,7 +19,35 @@
 
     model = "Freescale i.MX6 ULL 14x14 EVK Board";
     compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+    // //todo
+    // dht11 {
+    //     status = "okay";
+    //     compatible = "wwj,dht11_t";
+    //     gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
+    // };
 
+    // sg90 {
+    //     compatible = "wwj,sg90";
+    //     pwms = <&pwm3 0 20000000>;
+    //     status =  "okay";
+    // };
+
+    // sr501 {
+    //     status = "okay";	
+    //     compatible = "wwj,sr501";	
+    //     gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+        
+    //         pinctrl-names = "default";
+    //         pinctrl-0 = <&sr501pin>;
+
+    //     interrupt-parent = <&gpio4>;
+    //         interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
+    // };
+    // sr04 {
+    //     compatible = "wwj,sr04";
+    //     trig-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+    //     echo-gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+    // };
     sr501 {
         compatible = "wwj,sr501";
         status = "okay";

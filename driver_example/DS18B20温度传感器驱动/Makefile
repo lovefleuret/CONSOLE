@@ -7,7 +7,6 @@
 # 注意: 不同的开发板不同的编译器上述3个环境变量不一定相同,
 #       请参考各开发板的高级用户使用手册
 
-#KERN_DIR =  /home/book/100ask_stm32mp157_pro-sdk/Linux-5.4
 KERN_DIR =  ${shell pwd}/../../Linux-4.9.88-kernel
 
 all:

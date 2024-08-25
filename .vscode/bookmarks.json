@@ -1,7 +1,7 @@
 {
 	"files": [
 		{
-			"path": "Linux-4.9.88-kernel/arch/arm/boot/dts/100ask_imx6ull-14x14.dts",
+			"path": "Linux-4.9.88-kernel/arch/arm/boot/dts/wwj_imx6ull-14x14.dts",
 			"bookmarks": [
 				{
 					"line": 0,

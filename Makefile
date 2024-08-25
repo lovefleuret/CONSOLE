@@ -78,7 +78,7 @@ kernel:
 	$(TRACK) $(MAKE) -C $(KERNEL_DIR) zImage -j4 
 
 %.o: %.c
-	$(TRACK) $(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@ 
 	@echo "CC $<"
 
 
@@ -91,7 +91,7 @@ $(CONFIG_TIMESTAMP): $(CONFIG)
 
 
 appliation: $(AOBJS) $(COBJS) $(MAINOBJ)
-	$(TRACK) $(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
+	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
 	mkdir -p $(CONSOLE)/obj $(CONSOLE)/bin
 	mv $(BIN) $(CONSOLE)/bin/
 
@@ -111,8 +111,9 @@ menuconfig:
 	$(MAKE) menuconfig
 
 clean_app: 
-	rm -f $(BIN) $(AOBJS) $(COBJS) $(MAINOBJ) ./bin/* ./obj/*
-	rm -f $(CONFIG_TIMESTAMP)
+	find $(CONSOLE) -name "*.o" -type f -delete
+	rm -rf $(CONSOLE)/bin/$(BIN)
+	rm -rf $(CONFIG_TIMESTAMP)
 	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"
 	@echo -e "\e[47m---------------------------Clean all app_files success*_*-------------------------\e[0m"
 	@echo -e "\e[47m------------------------------------------------------------------------------\e[0m"

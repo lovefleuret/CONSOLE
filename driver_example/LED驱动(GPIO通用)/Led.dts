@@ -1,0 +1,14 @@
+leds {
+        compatible = "gpio-leds";
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_leds>;
+        
+        status = "okay";
+
+        led0: cpu {
+            label = "cpu";
+            gpios = <&gpio5 3 GPIO_ACTIVE_LOW>;
+            default-state = "on";
+            linux,default-trigger = "heartbeat";
+        };
+    };

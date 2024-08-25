@@ -2,7 +2,7 @@
 # 2. KERN_DIR中的内核要事先配置、编译, 为了能编译内核, 要先设置下列环境变量:
 # 2.1 ARCH,          比如: export ARCH=arm64
 # 2.2 CROSS_COMPILE, 比如: export CROSS_COMPILE=aarch64-linux-gnu-
-# 2.3 PATH,          比如: export PATH=$PATH:/home/book/100ask_roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin 
+# 2.3 PATH,          比如: export PATH=$PATH:/home/book/roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin 
 
 
 KERN_DIR = ${shell pwd}/../Linux-4.9.88-kernel
@@ -21,9 +21,12 @@ clean:
 # ab-y := a.o b.o
 # obj-m += ab.o
 
-# obj-m += dht11_drv.o
-# obj-m += sg90_drv.o
+
 obj-m += sr04_drv.o
+obj-m += sr501_drv.o
+obj-m += dht11_drv.o
+obj-m += led_drv.o
+obj-m += at24c02_drv.o
 
 
 

@@ -20,10 +20,10 @@ static void dht11_init(void)
     dht11_fd = open("/dev/dht11", O_RDWR);
     if(dht11_fd < 0)
     {
-        printf("open xf_dht11 failed\n");
+        printf("open dht11 failed\n");
         return;
     }
-    printf("open xf_dht11 success\n");
+    printf("open dht11 success\n");
     
 }
 static void* dht11_thread(void* args)

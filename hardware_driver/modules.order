@@ -1,0 +1,5 @@
+kernel//home/book/Desktop/Console/hardware_driver/sr04_drv.ko
+kernel//home/book/Desktop/Console/hardware_driver/sr501_drv.ko
+kernel//home/book/Desktop/Console/hardware_driver/dht11_drv.ko
+kernel//home/book/Desktop/Console/hardware_driver/led_drv.ko
+kernel//home/book/Desktop/Console/hardware_driver/at24c02_drv.ko

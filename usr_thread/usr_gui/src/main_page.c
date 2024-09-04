@@ -7,7 +7,7 @@
 #define MY_DEV_NUM 1
 
 
-int fd = -1;
+int led_fd = -1;
 static int led_status = 0;
 static int status = 0;
 lv_obj_t* main_page = NULL;
@@ -41,13 +41,13 @@ void change_screen(int stype)
 }
 static int led_open(char* file)
 {
-	fd = open(file, O_RDWR);
-	if (fd == -1)
+	led_fd = open(file, O_RDWR);
+	if (led_fd == -1)
 	{
 		printf("can not open file %s\n", file);
 		return -1;
 	}
-	return fd;
+	return led_fd;
 }
 
 static void led_on(int fd)
@@ -73,7 +73,7 @@ int res2;
 pthread_t thread2;
 static void mainpage_exit(void)
 {	
-	led_close(fd);
+	led_close(led_fd);
 	pthread_join(thread2, NULL);
 }
 static void cur_screen_set(enum SCREEN_TYPE cur, enum SCREEN_TYPE last)

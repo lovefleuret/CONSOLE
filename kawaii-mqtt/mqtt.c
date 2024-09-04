@@ -7,14 +7,38 @@ int res;
 pthread_t thread1;
 mqtt_client_t *client = NULL;
 
-
-
+extern int led_fd;
+int state = 0;
 static void topic1_handler(void* client, message_data_t* msg)
 {
     (void) client;
     MQTT_LOG_I("-----------------------------------------------------------------------------------");
     MQTT_LOG_I("%s:%d %s()...\ntopic: %s\nmessage:%s", __FILE__, __LINE__, __FUNCTION__, msg->topic_name, (char*)msg->message->payload);
     MQTT_LOG_I("-----------------------------------------------------------------------------------");
+    char buf[32] = { 0 };
+    strcpy(buf, (char*)msg->message->payload);
+    if(strcmp(buf, "led on") == 0) {
+        if(led_fd < 0) {
+            led_fd = open("/dev/led", O_RDWR);
+            if(led_fd < 0) {
+                MQTT_LOG_E("open led device fail");
+                return;
+            }
+        }
+        state = 1;
+        write(led_fd, &state, 1);
+        
+    }else if(strcmp(buf, "led off") == 0) {
+        if(led_fd < 0) {
+            led_fd = open("/dev/led", O_RDWR);
+            if(led_fd < 0) {
+                MQTT_LOG_E("open led device fail");
+                return;
+            }
+        }
+        state = 0;
+        write(led_fd, &state, 1);
+    }
 }
 static void* mqtt_publish_thread(void* args)
 {
